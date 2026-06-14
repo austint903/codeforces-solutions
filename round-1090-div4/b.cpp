@@ -11,20 +11,17 @@ int main() {
     cin>>n;
     vector<int>vt(7,0), res(n);
     for(int i=0;i<n;++i){
-        int curr=0;
+        int curr=0, mx=INT_MIN;
         for(int j=0;j<7;++j){
             cin>>t;
-            vt[j]=t;
+            curr+=t;
+            mx = max(mx, t);
         }
-        sort(vt.begin(), vt.end());
-            for(int k=0;k<6;++k){
-                curr-=vt[k];
-            }
-        curr+=vt[6];
-        res[i]=curr;
+        curr-=mx;
+        res[i]=(curr*-1 +mx);
     }
     for(int x:res){
-        cout<<x<<endl;
+        cout<<x<<'\n';
     }
     return 0;
 }
