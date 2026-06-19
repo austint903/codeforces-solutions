@@ -13,23 +13,12 @@ void solve(){
     for(int i =0;i<n;++i){
         cin>>arr[i];
     }
-    map<int,int>mp;
-    for(int i =0;i<n; ++i){
-        mp[i] = arr[i];
+    int small = INT_MAX, res=0;
+    for(int i =0; i<n; ++i){
+        res+=min(arr[i], small);
+        small=min(small, arr[i]);
     }
-    
-    for(auto it = mp.begin(); it != mp.end();) {
-        auto[key, value] = *it;
-        for(int i = key+1; i<n; ++i){
-            if(arr[i] > value){
-                mp[i] = value, arr[i]=value;
-                break;
-            }
-        }
-        auto next = mp.erase(it);
-        it = next;
-    }
-    cout << accumulate(arr.begin(), arr.end(), 0) << '\n';
+    cout << res << '\n';
 }
 
 int main() {
